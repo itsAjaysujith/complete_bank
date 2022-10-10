@@ -2,11 +2,11 @@
 
 <div><h1>{{aim}}</h1></div>
 <div id="main">
-    <form action="">
-        <input type="text" class="first" id="accu" #acno [placeholder]="acno"><br>
-        <input type="password" class="first" id="pass" #pass placeholder="password"><br>
-        <button type="button" id="butt" (click)="login(acno,pass)" >sign in</button><br><hr><br>
+    <form (ngSubmit)="login()">
+        <input name="accno" type="text" class="first" id="accu" [(ngModel)]="accno"  [placeholder]="acno"><br>
+        <input name="passo" type="password" class="first" id="pass" [(ngModel)]="pass"  placeholder="password"><br>
+        <button type="submit" id="butt"  >login in</button><br><hr><br>
         <a id="last">Dont have account?</a>
-        <button id="link" type="button" >create</button>
+        <a style="text-decoration: none; color:green; margin-left:10px;" routerLink="register">create</a>
     </form>
 </div>

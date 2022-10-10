@@ -1,16 +1,14 @@
 
-
-#main{
+#main1{
     background: rgba(150, 150, 150, 0.5);
     width: 720px;
-    height: 450px;
+    height: 550px;
     border-radius: 40px;
-    margin-left: 400px;
+    margin-left: 25%;
     margin-top: 100px;
     box-shadow: 0px 0px 20px 10px rgb(53 53 62 / 11%), 0px 0px 20px 10px rgb(53 53 62 / 31%);
-    
 }
-.first{
+.first1{
     margin-left: 60px;
     width: 588px;
     height: 50px;
@@ -18,32 +16,19 @@
     border: 0px;
     border-radius: 11px;
     box-shadow: 0px 0px 20px 10px rgb(247 247 247 / 0%), 0px 0px 13px 5px rgb(38 38 40 / 26%);
+    font-size: 20px;
 }
 
 
 
-#butt{
+#butt1{
     margin-left: 258px;
     margin-top: 23px;
-    width: 147px;
-    height: 53px;
+    width: 167px;
+    height: 43px;
     background-color: rgb(71, 71, 123);
-    border-radius: 24px;
+    border-radius: 14px;
     border: 0px;
     color: white;
     box-shadow: 0px 0px 20px 10px rgb(247 247 247 / 0%), 0px 0px 13px 5px rgb(38 38 40 / 26%);
-    transition: 1s;
-}
-#butt:hover{
-    background-color: rgb(81, 81, 203);
-}
-
-#last{
-    margin-left: 253px;
-    color: white;
-}
-
-#link{
-    margin-top: 10px;
-
 }

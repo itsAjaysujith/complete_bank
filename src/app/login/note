@@ -10,8 +10,38 @@ methods
     1.2)view to component    
         1.2.1)event binding--(event name)="functionname()"
         1.2.2)event bind using $event -- (event name)="functionname($event)"
-        1.2.3)event binding using template rendering variable-- #variable_name
+        1.2.3)event binding using template rendering variable-- #variable_name--wanna add arguments in function
 
 
 2)Two way binding        
-   2.1)ngModel--using third party formsModule
+   2.1)ngModel--using third party formsModule--[(ngModel)]=""
+
+
+
+
+   method to redirect
+   1)navigateByUrl---method of Router class--used by create an object of router
+ ----------------
+      dependency injection--inorder to use a class inside another class--data sharing between two dependent classes--define that class in constructor
+      while we need to create an object inside the constructor we need to give an axis specifier:-specify who can use it--in default it is public or we need to use private before reference of object
+
+--------------------------------
+Angular service--if we want to use any database redentently store it as angular services--here userdetails is to be used redentently      
+     create angular service command:-
+                         ng g s service_name 
+
+                         here while we call api it is easy while it called in service or to add condition checking wee need to call where ever condition checked 
+-------------------------------------                        
+
+in if condition all thing otherthan false will become true
+
+
+
+VALIDATION methods
+
+it is to validate inputs--if it is username input it only accept username
+
+it is angular form VALIDATION
+methods:-
+a)Template driven form--validation create on html we made--hard to do
+b)model driven form--can be used easy through methods in validator class(predefined)--easy compared to template driven

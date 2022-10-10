@@ -1,0 +1,13 @@
+table{
+    border: rgb(255, 255, 255) 3px solid;
+    background-color: aliceblue;
+    color: black;
+    width: 1000px;
+    text-align: center;
+    margin-left: 260px;
+    margin-top: 50px;
+}
+tr,td{
+    border: rgb(255, 255, 255) 3px solid;
+    background-color: aliceblue;
+}
