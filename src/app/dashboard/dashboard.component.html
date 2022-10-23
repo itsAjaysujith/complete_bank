@@ -1,25 +1,45 @@
 <h1 style="color: white;font-size: 40px;">welcome {{userOf}}!!</h1> 
+<div id="time">
+    <h3>system date and time :- {{timeDetails | date:'short'}}</h3>
+</div>
+<button id="log" (click)="logout()">Logout</button>
+<button id="del" (click)="delete()">Delete</button>
 <a id="trans" routerLink="/transaction">View transaction history</a>
 
 
-<div id="main1">
+
+
+
+<app-delete (onCancel)="oncancelnew()" (onDelete)="onDelete($event)" [item]="acno"></app-delete>
+
+
+<div [ngClass]="acno?'style1': '' "  id="main1">
     <h1 style="margin-left: 250px; padding-top: 15px;">deposit cash</h1>
-    <form (ngSubmit)="deposit()">
-        <input type="text" class="first1" id="user4" name="hello4" [(ngModel)]="acnum" placeholder="account number"><br>
-        <input type="password" class="first1" id="user5" name="hello5" [(ngModel)]="pas"    placeholder="password"><br>
-        <input type="text" class="first1" id="user6" name="hello6" [(ngModel)]="amt"  placeholder="amount to deposit"><br>
+    <!-- ng class is used to give class name to form -->
+    <!-- here ngclass used to remove deposit form from dashboard by checking acno has called or not--style is jst a class name -->
+    <!-- if we use ternery in ngclass we should use else--so use use an empty string -->
+    <form (ngSubmit)="deposit()" [formGroup]="depositForm">
+        <input type="text" class="first1" id="user4" name="hello4" formControlName="acnum" placeholder="account number"><br>
+        <div *ngIf="this.depositForm.get('acnum')?.errors&&this.depositForm.get('acnum')?.touched"><p style="color: red;margin-left:300px;font-size: 20px;">invalid account number</p></div>
+        <input type="password" class="first1" id="user5" name="hello5" formControlName="pas"    placeholder="password"><br>
+        <div *ngIf="this.depositForm.get('pas')?.errors&&this.depositForm.get('pas')?.touched"><p style="color: red;margin-left:300px;font-size: 20px;">invalid password</p></div>
+        <input type="text" class="first1" id="user6" name="hello6" formControlName="amt"  placeholder="amount to deposit"><br>
+        <div *ngIf="this.depositForm.get('amt')?.errors&&this.depositForm.get('amt')?.touched"><p style="color: red;margin-left:300px;font-size: 20px;">invalid amount</p></div>
         <button type="submit" id="butt1" >deposit</button><br>
         
     </form>
 </div>
 
 
-<div id="main2">
+<div [ngClass]="acno?'style1': '' "  id="main2">
     <h1 style="margin-left: 250px; padding-top: 15px;">withdraw cash</h1>
-    <form (ngSubmit)="withdraw()">
-        <input type="text" class="first1" id="user7" name="hello7" [(ngModel)]="acnum1"  placeholder="account number"><br>
-        <input type="password" class="first1" id="user8" name="hello8" [(ngModel)]="pas1"  placeholder="password"><br>
-        <input type="text" class="first1" id="user9" name="hello9" [(ngModel)]="withd"  placeholder="amount to Withdraw"><br>
+    <form (ngSubmit)="withdraw()" [formGroup]="withdrawForm">
+        <input type="text" class="first1" id="user7" name="hello7" formControlName="acnum1"  placeholder="account number"><br>
+        <div *ngIf="this.withdrawForm.get('acnum1')?.errors&&this.withdrawForm.get('acnum1')?.touched"><p style="color: red;margin-left:300px;font-size: 20px;">invalid account number</p></div>
+        <input type="password" class="first1" id="user8" name="hello8" formControlName="pas1"  placeholder="password"><br>
+        <div *ngIf="this.withdrawForm.get('pas1')?.errors&&this.withdrawForm.get('pas1')?.touched"><p style="color: red;margin-left:300px;font-size: 20px;">invalid password</p></div>
+        <input type="text" class="first1" id="user9" name="hello9" formControlName="withd"  placeholder="amount to Withdraw"><br>
+        <div *ngIf="this.withdrawForm.get('withd')?.errors&&this.withdrawForm.get('withd')?.touched"><p style="color: red;margin-left:300px;font-size: 20px;">invalid amount</p></div>
         <button type="submit" id="butt1" >Withdraw</button><br>
         
     </form>

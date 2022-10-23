@@ -50,3 +50,47 @@
     color: #ffffff;
     font-size: 20px;
 }
+
+#log{
+    width: 100px;
+    height: 37px;
+    cursor: pointer;
+    border: 0px;
+    border-radius: 20px;
+    margin-left: 1327px;
+    text-decoration: none;
+    background-color: rgb(121, 121, 196);
+    color: #ffffff;
+    font-size: 20px;
+
+}
+
+#log:hover{
+    background-color: rgb(42, 42, 91);
+
+}
+
+#del{
+    width: 100px;
+    height: 37px;
+    cursor: pointer;
+    border: 0px;
+    border-radius: 20px;
+    margin-left: 1327px;
+    margin-top: 10px;
+    text-decoration: none;
+    background-color: rgb(121, 121, 196);
+    color: #ffffff;
+    font-size: 20px;
+
+}
+
+#del:hover{
+    background-color: rgb(42, 42, 91);
+
+}
+
+#time{
+    
+    color: rgb(0, 0, 0);
+}

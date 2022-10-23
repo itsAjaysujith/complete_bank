@@ -43,5 +43,42 @@ it is to validate inputs--if it is username input it only accept username
 
 it is angular form VALIDATION
 methods:-
-a)Template driven form--validation create on html we made--hard to do
-b)model driven form--can be used easy through methods in validator class(predefined)--easy compared to template driven
+1)Template driven form--validation create on html we made--hard to do
+2)model driven form--can be used easy through methods in validator class(predefined)--easy compared to template driven--form will create in ts file
+  2.1)Reactive form--it should have;--in constructor of usig files ts file formbuilder
+      -Form group
+      -an array
+      -controls/controller--expect object argument
+
+node modules wont present when we take clone project so we need to install--npm i
+
+PARENT CHILD COMMU--we use decorator--@input
+CHILD TO PARENT--@output decorator
+
+
+
+
+LOCAL STORAGE IN ANGULAR
+     -setItem()
+     -getItem()
+     -removeItem()
+
+CREATION OF USER DEFINED EVENTS
+  -predifined events are click.mouse pointer
+  -in order to create events we use eventEmitter class
+  -then call its methods by creating objects of EventEmitter--to work that method we need to call emit() method
+  -to call that event we need to call in selector of that file we called in any html
+
+
+
+COMMUNICATION BETWEEN DIFF PORTs--data sharing--using cors (cross orgin resourse sharing)--between port of angular 4200 and server 3000--this installed in server
+
+
+--import HttpClientModule--in app module
+   --class name HttpClient--inside this module to create Http request
+
+
+--http api request is asynchronous request so to solve asynchronous request in ts we use RxJs method--have chance of two observable will take more than 1 request at asynchronous req(instead of promise in javascript--only one request at one time) resolve and reject
+  --resolve will use subscribe() method(instead of then in js)
+  --reject will use catch() method  
+

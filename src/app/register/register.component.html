@@ -1,10 +1,17 @@
 <div id="main1">
     <h1 style="margin-left: 220px; margin-top: 20px;">create an account</h1>
-    <form action="">
-        <input type="text" class="first1" id="user1" name="hello1" [(ngModel)]="uname" placeholder="username"><br>
-        <input type="text" class="first1" id="user2" name="hello2" [(ngModel)]="acnumber" placeholder="account number"><br>
-        <input type="password" class="first1" id="user3" name="hello3" [(ngModel)]="pas" placeholder="password"><br>
-        <button type="button" id="butt1" (click)="register()">register</button><br>
+    <form (ngSubmit)="register()" [formGroup]="registerForm">
+        <input type="text" class="first1" id="user1" name="hello1" formControlName="uname" placeholder="username"><br>
+       
+        <div *ngIf="this.registerForm.get('uname')?.errors&&this.registerForm.get('uname')?.touched" class="validate"><p style="color: red;margin-left:300px;font-size: 20px;">invalid username</p></div>
+
+        <input type="text" class="first1" id="user2" name="hello2" formControlName="acnumber" placeholder="account number"><br>
+        <div *ngIf="this.registerForm.get('acnumber')?.errors&&this.registerForm.get('acnumber')?.touched" class="validate"><p style="color: red;margin-left:300px;font-size: 20px;">invalid acnumber</p></div>
+
+        <input type="password" class="first1" id="user3" name="hello3" formControlName="pas" placeholder="password"><br>
+        <div *ngIf="this.registerForm.get('pas')?.errors&&this.registerForm.get('pas')?.touched" class="validate"><p style="color: red;margin-left:300px;font-size: 20px;">invalid password</p></div>
+
+        <button type="submit" id="butt1">register</button><br>
         
     </form>
 </div>

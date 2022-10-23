@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from '../services/data.service';
 
@@ -13,11 +14,17 @@ export class LoginComponent implements OnInit {
   acno='acnumber'
   accno=''
   pass=''
+
+
+  loginForm = this.fb.group({
+     accno: ['',[Validators.required,Validators.pattern('[0-9]+')]],
+     pass: ['',[Validators.required,Validators.pattern('[a-zA-Z0-9]+')]]
+  })
   
 
 
 
-  constructor(private router:Router,private ds:DataService) { }
+  constructor(private router:Router,private ds:DataService,private fb:FormBuilder) { }
 
   ngOnInit(): void {
   }
@@ -25,14 +32,34 @@ export class LoginComponent implements OnInit {
 
   login(){
     
-    var acnum=this.accno
-    var pawrd=this.pass
-    const log=this.ds.login(acnum,pawrd)
-    if(log){
-      alert('login success')
-      this.router.navigateByUrl('dashboard')
+    var acnum=this.loginForm.value.accno
+    var pawrd=this.loginForm.value.pass
+    
+    if(this.loginForm.valid){
+      this.ds.login(acnum,pawrd).subscribe((result:any)=>{
+
+        localStorage.setItem('currentUser',JSON.stringify(result.currentUser))
+        localStorage.setItem('currentAcno',JSON.stringify(result.currentAcno))
+        localStorage.setItem('token',JSON.stringify(result.token))
+
+        alert(result.message)
+        this.router.navigateByUrl('dashboard')
+        },
+        result=>{
+          alert(result.error.message);
+         
+        }
+    
+    
+        )
+    
+    
+
+    }else{
+      alert('invalid form')
 
     }
+    
     
   }
 

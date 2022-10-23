@@ -3,3 +3,8 @@ body{
     background-image: url(./assets/money1.jpg);
     background-size: cover;
 }
+
+.style1{
+    opacity: 0;
+
+}

@@ -1,121 +1,88 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
+// in order header shouldbe overloaded--means want two items in header
+const options={
+  headers:new HttpHeaders()
+
+}
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
+  constructor(private http:HttpClient) {
 
-
-  currentUser:any
-
-  currentAcno:any
-
-  userDetails:any={
-    1000:{acno:1000,username:"amal",password:123,balance:100000,transactions:[]},
-    1001:{acno:1001,username:"bhim",password:123,balance:100000,transactions:[]},
-    1002:{acno:1002,username:"ajay",password:123,balance:100000,transactions:[]},
-    1003:{acno:1003,username:"hari",password:123,balance:100000,transactions:[]}
-  }
-
-  constructor() { }
+    
+   }
 
   register(acno:any,username:any,password:any){
 
-    let userDetails=this.userDetails
-  // in this function we create a logic whic we want to use in another function
-    if(acno in userDetails){
-     return false
-    }else{
-      userDetails[acno]={acno,username,password,balance:0}
-      console.log(userDetails);
-    
-      
-      return true;
-    }
-    
+    const data={acno,username,password}
+// should return due to this asyncronous--ie,diff ports
+    return this.http.post('http://localhost:3000/register',data)
 
-  }
+
+}
 
 
   login(acnum:any,pawrd:any){
+    const data={acnum,pawrd}
+    return this.http.post('http://localhost:3000/login',data)
   
-    let user=this.userDetails
-    if(acnum in user){
-      if(pawrd==user[acnum]['password']){
-        this.currentUser=user[acnum]['username']
-        this.currentAcno=acnum
-        return true
+  
+  }
 
-      }else{
-        alert('incorrect password')
-        return false
+  getToken(){
+  //  fetch token from local storage
+     const token=JSON.parse(localStorage.getItem('token')||'')
+
+    //  1)append token inside headers
+    //  1.1)create header
+      let header=new HttpHeaders()
+      //1.3)append token to header 
+      if(token){
+        options.headers=header.append('token1',token)
+        
       }
+      return options;
+      
 
-    }else{
-      alert('user not exist')
-      return false
-    }
-    
+
+
   }
 
   deposit(acnum:any,pas:any,amt:any){
-    let use=this.userDetails
-    // here amount in string type so we need to convert it into number using parseInt method
-    var amnt=parseInt(amt) 
-    if(acnum in use){
-      if(pas==use[acnum]['password']){
-        use[acnum]['balance']+=amnt
-        use[acnum]['transactions'].push({
-          type:'credit',amount:amnt
-        })
-        return use[acnum]['balance']
-      }else{
-        alert('incorrect password')
-      }
-    }else{
-       alert('user not exist')
-       return false
-
-    }
+    const data={acnum,pas,amt}
+    return this.http.post('http://localhost:3000/deposit',data,this.getToken())
+  
 
     
   }
 
 
   withdraw(acnum1:any,pas1:any,withd:any){
-    let use=this.userDetails
-    // here amount in string type so we need to convert it into number using parseInt method
-    var amnt=parseInt(withd) 
-    if(acnum1 in use){
-      if(pas1==use[acnum1]['password']){
-        if(withd>use[acnum1]['balance']){
-          alert('insufficient balance')
-        }
-        else {
-          use[acnum1]['balance']-=amnt
-          use[acnum1]['transactions'].push({type:'debit',amount:amnt})
-          return use[acnum1]['balance']
-
-        }
-       
-      }else{
-        alert('incorrect password')
-      }
-    }else{
-       alert('user not exist')
-       return false
-        
-    }
+    const data={acnum1,pas1,withd}
+    return this.http.post('http://localhost:3000/withdraw',data,this.getToken())
+  
 
     
   }
 
   getTaransaction(acno:any){
-    return this.userDetails[acno]['transactions']
+
+    const data={acno}
+    return this.http.post('http://localhost:3000/transaction',data,this.getToken())
     
 
   }
+
+ deleteAcc(acno:any){
+  return this.http.delete('http://localhost:3000/deleteacc/'+acno)
+
+ }
 
 
 }

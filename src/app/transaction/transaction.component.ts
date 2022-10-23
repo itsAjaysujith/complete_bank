@@ -9,15 +9,22 @@ import { DataService } from '../services/data.service';
 export class TransactionComponent implements OnInit {
   acno:any
   trans:any
+ 
 
   constructor(private ds:DataService) { 
 
-    this.acno=this.ds.currentAcno
-    this.trans=this.ds.getTaransaction(this.acno)
-    console.log(this.trans);
-    
-
-
+    this.acno=JSON.parse(localStorage.getItem('currentAcno')||'')
+    this.ds.getTaransaction(this.acno).subscribe((result:any)=>{
+      this.trans=result.transactions
+      
+      },
+      result=>{
+        alert(result.error.message);
+      }
+  
+  
+      )
+  
   }
 
   ngOnInit(): void {

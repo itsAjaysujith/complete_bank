@@ -2,9 +2,11 @@
 
 <div><h1>{{aim}}</h1></div>
 <div id="main">
-    <form (ngSubmit)="login()">
-        <input name="accno" type="text" class="first" id="accu" [(ngModel)]="accno"  [placeholder]="acno"><br>
-        <input name="passo" type="password" class="first" id="pass" [(ngModel)]="pass"  placeholder="password"><br>
+    <form (ngSubmit)="login()" [formGroup]="loginForm">
+        <input name="accno" type="text" class="first" id="accu" formControlName="accno"  [placeholder]="acno"><br>
+        <div *ngIf="this.loginForm.get('accno')?.errors&&this.loginForm.get('accno')?.touched"><p style="color: red;margin-left:300px;font-size: 20px;">invalid account number</p></div>
+        <input name="passo" type="password" class="first" id="pass" formControlName="pass"  placeholder="password"><br>
+        <div *ngIf="this.loginForm.get('pass')?.errors&&this.loginForm.get('pass')?.touched"><p style="color: red;margin-left:300px;font-size: 20px;">invalid password</p></div>
         <button type="submit" id="butt"  >login in</button><br><hr><br>
         <a id="last">Dont have account?</a>
         <a style="text-decoration: none; color:green; margin-left:10px;" routerLink="register">create</a>
